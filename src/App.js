@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Highlight, { defaultProps, Prism } from "prism-react-renderer";
+import Highlight, { defaultProps} from "prism-react-renderer";
 import {ArielGrammar} from './ariel-grammar';
 
 const exampleCode = `
@@ -9,12 +9,12 @@ update a where a=123
 `;
 
 function App() {
-  // console.log(Prism.languages.sql);
-  Prism.languages.ariel = ArielGrammar;
+  const {Prism, theme} = defaultProps;
+  Prism.languages = { ariel: ArielGrammar };
   return (
     <div className="App">
       <header className="App-header">
-      <Highlight {...defaultProps} code={exampleCode} language="ariel">
+      <Highlight Prism={Prism} theme={theme} code={exampleCode} language="ariel">
     {({ className, style, tokens, getLineProps, getTokenProps }) => (
       <pre className={className} style={style}>
         {tokens.map((line, i) => (
